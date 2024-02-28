@@ -1,0 +1,21 @@
+.container {
+  max-width: 1080px;
+  margin: 20px auto;
+}
+
+.containerimagem{
+  font-size: large;
+  display: flex;
+  justify-content: right;
+  padding-left: 32%;
+  align-items: center;
+}
+
+.cabeca{
+  background-color: rgb(62, 66, 71);
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
