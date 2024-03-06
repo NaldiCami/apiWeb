@@ -5,33 +5,38 @@ import {
   AccordionItemHeading,
   AccordionItemButton,
   AccordionItemPanel,
-} from "react-accessible-accordion";
-import "./forecast.css";
+} from "react-accessible-accordion"; // Importa os componentes necessários do pacote react-accessible-accordion
+import "./forecast.css"; // Importa o estilo CSS para este componente
 
-const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']; // Array com os nomes dos dias da semana
 
 const Forecast = ({ data }) => {
+  // Obtém o dia da semana atual
   const dayInAWeek = new Date().getDay();
+  // Gera uma lista de dias da semana para a previsão começando a partir do dia atual
   const forecastDays = WEEK_DAYS.slice(dayInAWeek, WEEK_DAYS.length).concat(WEEK_DAYS.slice(0, dayInAWeek));
   
   return (
-    <>
-      <label className="title">Daily</label>
-      <Accordion allowZeroExpanded>
-        {data.list.splice(0, 7).map((item, idx) => (
-          <AccordionItem key={idx}>
-            <AccordionItemHeading>
-              <AccordionItemButton>
-                <div className="daily-item">
-                  <img src={`icons/${item.weather[0].icon}.png`} className="icon-small" alt="weather" />
-                  <label className="day">{forecastDays[idx]}</label>
-                  <label className="description">{item.weather[0].description}</label>
-                  <label className="min-max">{Math.round(item.main.temp_max)}°C /{Math.round(item.main.temp_min)}°C</label>
+    <> {/* Fragmento vazio */}
+      <label className="title">Daily</label> {/* Título para a seção de previsão diária */}
+      {/* Componente Accordion para exibir os detalhes da previsão para cada dia */}
+      <Accordion allowZeroExpanded> {/* Permite que nenhum item do acordeão esteja expandido inicialmente */}
+        {/* Mapeia os dados da previsão para os próximos 7 dias */}
+        {data.list.splice(0, 7).map((item, idx) => ( // Utiliza apenas os primeiros 7 elementos da lista de dados da previsão
+          <AccordionItem key={idx}> {/* Item do acordeão para cada dia da previsão */}
+            <AccordionItemHeading> {/* Cabeçalho do item do acordeão */}
+              <AccordionItemButton> {/* Botão para expandir/collapsar o painel de detalhes */}
+                <div className="daily-item"> {/* Container para os detalhes do dia da previsão */}
+                  <img src={`icons/${item.weather[0].icon}.png`} className="icon-small" alt="weather" /> {/* Ícone do clima para o dia */}
+                  <label className="day">{forecastDays[idx]}</label> {/* Dia da semana */}
+                  <label className="description">{item.weather[0].description}</label> {/* Descrição do clima */}
+                  <label className="min-max">{Math.round(item.main.temp_max)}°C /{Math.round(item.main.temp_min)}°C</label> {/* Temperatura máxima e mínima */}
                 </div>
               </AccordionItemButton>
             </AccordionItemHeading>
-            <AccordionItemPanel>
-              <div className="daily-details-grid">
+            <AccordionItemPanel> {/* Painel de detalhes do dia da previsão, expandido quando o usuário clica no botão do acordeão */}
+              <div className="daily-details-grid"> {/* Grid para os detalhes do clima */}
+                {/* Detalhes adicionais da previsão */}
                 <div className="daily-details-grid-item">
                   <label>Pressure:</label>
                   <label>{item.main.pressure}</label>
@@ -65,4 +70,4 @@ const Forecast = ({ data }) => {
   );
 };
 
-export default Forecast;
+export default Forecast; // Exporta o componente Forecast
